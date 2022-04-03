@@ -34,13 +34,14 @@ function DVDsItem(props){
 
     return (
     <Bookitem>
-        <Bookimage>
+        <Bookimage>The Book Cover
         </Bookimage>
         <Bookitemcontent key={props.DVD.id}>
-            <h3>{props.DVD.movie}</h3>
-            <p>{props.DVD.genre.join(" | ")}</p>
-            <p>{props.DVD.year}</p>
-            <p>{props.DVD.price}</p>
+            <h4>Title:{props.DVD.movie}</h4>
+            <h4>Subtitle:{props.DVD.movie}</h4>
+            <p>All authors: {props.DVD.genre.join(" | ")}</p>
+            <p>Number of page: {props.DVD.year}</p>
+            <p>Description: {props.DVD.price}</p>
             { props.DVD.stock < 10 && props.DVD.stock > 0 ? <p>Only <span>{props.DVD.stock}</span> left in stock</p> : <p>Stock: {props.DVD.stock}</p>}
         </Bookitemcontent>
         { props.DVD.stock === 0 ? <h3>Out of Stock</h3> :<AddItemfunc DVD = {props.DVD}
