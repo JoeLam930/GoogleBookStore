@@ -63,17 +63,14 @@ function BooksItem(props){
         }else{
             setSelected(false);
             // Press Remove
-         
-
         }
 
     }
 
     return (
+    
 
-    /*<Bookitem onClick={()=>checkSelect()} className = { itemColor = true ? "" : "bookItemwhite" }>*/
-    /*<Bookitem onClick={()=>checkSelect()}>*/
-    <Bookitem onClick={()=>checkSelect() } className = {selected ? 'bookItemred' : 'bookItemwhite'}> 
+    <Bookitem onClick={()=>checkSelect() } className = {selected ? 'bookItemgray' : 'bookItemwhite'}> 
 
         <Bookimage>
                     <img
@@ -86,14 +83,10 @@ function BooksItem(props){
             {props.item.volumeInfo.subtitle == null ? "" : <h5>{props.item.volumeInfo.subtitle}</h5>}</h4>
             <p>{props.item.volumeInfo.authors.join(" | ")}</p>
             <p>Pages: {props.item.volumeInfo.pageCount}</p>
-            {/* <p>{truncate1(props.item.volumeInfo.description, 140)}</p> */}
             <p>{truncate2(props.item.volumeInfo.description, 140, true)}</p>             
         </Bookitemcontent>
-        {/*<IsSelected item = {props.item}
-                            selected = {selected}
-                            setSelected = {setSelected}
-    />*/}
     </Bookitem>
+    
     )    
 }
 export default BooksItem;

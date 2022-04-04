@@ -1,6 +1,6 @@
 import { BrowserRouter, Link, Route, Routes, Router, NavLink } from 'react-router-dom';
 import AllBooksPage from './pages/AllBooksPage.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styledComponents from 'styled-components';
 import { Book, Facebook, Instagram, Twitter } from '@material-ui/icons';
 import './components/BooksItemsandlists/BooksItem.css';
@@ -138,7 +138,44 @@ function App() {
   const [ BooksStorage, setBooksStorage ] = useState([]);
   const [ FeaturedBook1, setFeaturedBook1 ] = useState();
   const [ FeaturedBook2, setFeaturedBook2 ] = useState();
-  const [ fetching, setFetching ] = useState(true);
+  const [fselected1, setfSelected1] = useState(false);
+  const [fselected2, setfSelected2] = useState(false);  
+  const [fetching, setFetching ] = useState(true);     
+
+  useEffect(() => {
+     setfSelected1(JSON.parse(window.localStorage.getItem('fselected1')));
+     setfSelected2(JSON.parse(window.localStorage.getItem('fselected2')));
+  }, []);
+
+  useEffect(() => {
+      window.localStorage.setItem('fselected1', fselected1);
+      window.localStorage.setItem('fselected2', fselected2);
+  }, [fselected1, fselected2]); 
+
+  // useEffect(() => {
+     
+  // }, []);
+
+  // useEffect(() => {
+      
+  // }, [fselected2]);
+
+  const checkSelect = (num) => {
+    if(num === 1){
+      if (!fselected1){
+        setfSelected1(true);
+      }else{
+        setfSelected1(false);
+      }
+    }
+    else{
+      if (!fselected2){
+        setfSelected2(true);
+      }else{
+        setfSelected2(false);
+      }
+    }    
+}
 
   return (
     <div>
@@ -174,7 +211,7 @@ function App() {
       <Items>
         <ReverseforDesktop>
         <Featured>Featured
-          <Featureditem>
+          <Featureditem onClick={()=>checkSelect(1) } className = {fselected1 ? 'featureditemgray' : 'featureditemwhite'}>
             <Featurecontent>
               <h4>{!fetching && FeaturedBook1.volumeInfo.title}</h4>
               {!fetching && (FeaturedBook1.volumeInfo.subtitle == null ? "" : <h4>{FeaturedBook1.volumeInfo.subtitle}</h4>)}
@@ -188,7 +225,7 @@ function App() {
           </Featureditem>
           </Featured>
           <Featured>Featured
-        <Featureditem>
+        <Featureditem  onClick={()=>checkSelect(2) } className = {fselected2 ? 'featureditemgray' : 'featureditemwhite'}>
             <Featurecontent>
               <h4>{!fetching && FeaturedBook2.volumeInfo.title}</h4>
               {!fetching && (FeaturedBook2.volumeInfo.subtitle == null ? "" : <h4>{FeaturedBook2.volumeInfo.subtitle}</h4>)}
