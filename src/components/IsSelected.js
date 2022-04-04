@@ -1,6 +1,6 @@
 import styledComponents from 'styled-components';
 
-function AddItemfunc(props) {
+function IsSelected(props) {
 
     const Selectbook = styledComponents.div`
     padding: 1.5rem;
@@ -17,17 +17,12 @@ function AddItemfunc(props) {
     border-radius: 4px;
 `;
 
-    const addtoCart = (props) => {
-        props.setCart([...props.cart, props.DVD])
-        props.setTotalcost(props.totalcost + Number(props.DVD.price.replace(/[^0-9.-]+/g,"")))
-        //props.minusStock()
-        props.DVD.stock -=1
-    }
-
-    return (
+return (
         <Selectbook>
-        <Selectbookbutton onClick={() => addtoCart(props)}>Select</Selectbookbutton>
+        {!props.selected?
+        <Selectbookbutton onClick={() => props.setSelected(true)}>Select</Selectbookbutton>:
+        <Selectbookbutton onClick={() => props.setSelected(false)}>Remove</Selectbookbutton>}
         </Selectbook> 
     )
 }
-export default AddItemfunc;
+export default IsSelected;

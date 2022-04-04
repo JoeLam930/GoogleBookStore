@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AllDVDsPage from './pages/AllDVDs.js';
+import AllBooksPage from './pages/AllBooksPage.js';
 import { useState } from 'react';
 import styledComponents from 'styled-components';
 import { Book, Facebook, Instagram, Twitter } from '@material-ui/icons';
@@ -119,10 +119,9 @@ const NoFeatured = styledComponents.div`
 
 function App() {
 
-  const [ cart, setCart ] = useState ([])
-  const [ DVDsStorge, LoadDVDsStorge ] = useState([])
-  const [ totalcost, setTotalcost] = useState(0.0)
-  const [ dvdstock, setdvdStock ] = useState()
+  const [ BooksStorage, setBooksStorage ] = useState([]);
+  const [ FeaturedBook1, setFeaturedBook1 ] = useState();
+  const [ FeaturedBook2, setFeaturedBook2 ] = useState();
 
   return (
     <div>
@@ -152,8 +151,13 @@ function App() {
         <ReverseforDesktop>
         <Featured>Featured
           <Featureditem>
-            <Featurecontent>Title</Featurecontent>
-            <Featuredimage>Image</Featuredimage>
+            <Featurecontent>
+              <p>{FeaturedBook1.volumeInfo.title}</p>
+              <p>{FeaturedBook1.volumeInfo.title}</p>
+              </Featurecontent>
+            <Featuredimage>
+              <img src={FeaturedBook1.volumeInfo.imageLinks.smallThumbnail}/>
+              </Featuredimage>
           </Featureditem>
         </Featured>
         <Featured>Featured
@@ -166,14 +170,12 @@ function App() {
       <NoFeatured>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<AllDVDsPage cart={cart} 
-                                                setCart={setCart}
-                                                DVDsStorge = {DVDsStorge}
-                                                LoadDVDsStorge={LoadDVDsStorge}
-                                                totalcost = {totalcost}
-                                                setTotalcost={setTotalcost}
-                                                dvdstock={dvdstock}
-                                                setdvdStock={setdvdStock}
+          <Route path='/' element={<AllBooksPage BooksStorage = {BooksStorage}
+                                                setBooksStorage={setBooksStorage}
+                                                FeaturedBook1 = {FeaturedBook1}
+                                                setFeaturedBook1 = {setFeaturedBook1}
+                                                FeaturedBook2 = {FeaturedBook2}
+                                                setFeaturedBook2 = {setFeaturedBook2}
                                                 />}>
                                                 </Route>                                                
         </Routes>
