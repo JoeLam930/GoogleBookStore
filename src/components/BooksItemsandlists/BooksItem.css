@@ -9,16 +9,26 @@
     padding: 0;
   }
 
-  .dvdItem {
-    text-align: center;
-    width: 33.3%;
-    height: 25%;
-    margin: 1rem 0;
-    padding : 1rem;
-    background-color: white;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  .bookItemred {
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+    cursor: pointer;
+    margin: 0.5rem 0;
+    padding : 0.5rem;
+    background-color: gray;
   }
+
+  .bookItemwhite {
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+    cursor: pointer;
+    margin: 0.5rem 0;
+    padding : 0.5rem;
+    background-color: white;
+  }
+
 
   .cartItem {
     text-align: center;

@@ -1,27 +1,26 @@
 import { useEffect, useState } from 'react';
 import styledComponents from 'styled-components';
 import './BooksItem.css';
-import IsSelected from '../IsSelected';
 
 const Bookitem = styledComponents.div`
     display: flex;
     flex-wrap: wrap;
+    text-align: justify;
     width: 45%;
+    cursor: pointer;
     margin: 0.5rem 0;
     padding : 0.5rem;
-    background-color: white;
-    border-radius: 6px;
     @media only screen and (max-width: 900px){
         width: 75%;
     }
     @media only screen and (max-width: 600px){
         width: 100%;
     }
-    
 `;
 
+
 const Bookimage = styledComponents.div`
-    width: 35%;
+    width: 40%;
     border: 1px solid black; 
 `;
 
@@ -34,6 +33,7 @@ const Bookitemcontent = styledComponents.div`
 function BooksItem(props){
 
     const [selected, setSelected] = useState(false);
+    
 
     useEffect(() => {
         setSelected(JSON.parse(window.localStorage.getItem(props.item.id+'_selected')));
@@ -53,32 +53,47 @@ function BooksItem(props){
         return (useWordBoundary 
           ? subString.substr(0, subString.lastIndexOf(" ")) 
           : subString);
-      };
+    };
+
+    const checkSelect = () => {
+        if (!selected){
+            setSelected(true);
+            // Press Select
+           
+        }else{
+            setSelected(false);
+            // Press Remove
+         
+
+        }
+
+    }
 
     return (
-    <Bookitem>
+
+    /*<Bookitem onClick={()=>checkSelect()} className = { itemColor = true ? "" : "bookItemwhite" }>*/
+    /*<Bookitem onClick={()=>checkSelect()}>*/
+    <Bookitem onClick={()=>checkSelect() } className = {selected ? 'bookItemred' : 'bookItemwhite'}> 
+
         <Bookimage>
                     <img
                         src={props.item.volumeInfo.imageLinks.smallThumbnail}
                         alt="book cover"
-                        width="100px"
-                        height="100px"
                     />
         </Bookimage>
         <Bookitemcontent key={props.item.id}>
-            <h4>Title: {props.item.id}</h4>
-            <h4>{props.item.volumeInfo.title}</h4>
-            {props.item.volumeInfo.subtitle == null ? "" : <h4>{props.item.volumeInfo.subtitle}</h4>}
+            <h4>{props.item.volumeInfo.title}
+            {props.item.volumeInfo.subtitle == null ? "" : <h5>{props.item.volumeInfo.subtitle}</h5>}</h4>
             <p>{props.item.volumeInfo.authors.join(" | ")}</p>
             <p>Pages: {props.item.volumeInfo.pageCount}</p>
             {/* <p>{truncate1(props.item.volumeInfo.description, 140)}</p> */}
             <p>{truncate2(props.item.volumeInfo.description, 140, true)}</p>             
         </Bookitemcontent>
-        <IsSelected item = {props.item}
+        {/*<IsSelected item = {props.item}
                             selected = {selected}
                             setSelected = {setSelected}
-        />
-    </Bookitem>    
+    />*/}
+    </Bookitem>
     )    
 }
 export default BooksItem;

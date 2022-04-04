@@ -3,10 +3,8 @@ import AllBooksPage from './pages/AllBooksPage.js';
 import { useState } from 'react';
 import styledComponents from 'styled-components';
 import { Book, Facebook, Instagram, Twitter } from '@material-ui/icons';
-import './components/BooksItemsandlists/BooksItem.css';
 
 const Header = styledComponents.div`
-  text-align: center;
   height: 75px;
   background-color: white;
   display: flex;
@@ -44,7 +42,6 @@ const Socialmediafooter = styledComponents.div`
 const Menu = styledComponents.div`
   display: flex;
   width: 100%;
-  height: 70px;
   background-color: white;
   border: 1px solid black;
   @media only screen and (max-width: 600px){
@@ -153,13 +150,7 @@ function App() {
         <Instagram></Instagram>
       </Socialmediaheader>
       </Header>
-      <Menu>
-        <Menubutton>Home</Menubutton>
-        <Menubutton>Books</Menubutton>
-        <Menubutton>Magazines</Menubutton>
-        <Menubutton>E-Books</Menubutton>
-        <Menubutton>Account</Menubutton>
-      </Menu>
+      <Menu><Menubutton>Home</Menubutton></Menu>
       <MobileMenu></MobileMenu>
       <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
