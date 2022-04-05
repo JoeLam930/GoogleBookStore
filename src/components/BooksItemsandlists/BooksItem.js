@@ -67,8 +67,7 @@ function BooksItem(props){
 
     return (
     /*Select on a book anywhere on the page by clicking on them.
-      it should be clear the user has made a selection, add
-      a class of is-selected.
+      Clear the user has made a selection, add a class of is-selected.
       Click on a selected book a second time to remove the class.
     */
 
