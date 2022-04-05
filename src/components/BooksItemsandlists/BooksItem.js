@@ -21,13 +21,14 @@ const Bookitem = styledComponents.div`
 
 const Bookimage = styledComponents.div`
     width: 40%;
-    border: 1px solid black; 
+    @media only screen and (max-width: 900px){
+        width: 25%;
+    }
 `;
 
 const Bookitemcontent = styledComponents.div`
     width: 60%;
     text-align: left;
-    border: 1px solid black;
 `;
 
 function BooksItem(props){
