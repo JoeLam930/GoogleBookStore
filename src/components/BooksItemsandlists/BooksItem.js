@@ -44,10 +44,6 @@ function BooksItem(props){
         window.localStorage.setItem(props.item.id+'_selected', selected);
     }, [selected]);
 
-    // const truncate1 = (str, n) => {
-	// 	return str.length > n ? str.substr(0, n - 1) : str;
-	// };
-
     const truncate2 = ( str, n, useWordBoundary ) => {
         if (str.length <= n) { return str; }
         const subString = str.substr(0, n-1); // the original check
@@ -59,11 +55,9 @@ function BooksItem(props){
     const checkSelect = () => {
         if (!selected){
             setSelected(true);
-            // Press Select
            
         }else{
             setSelected(false);
-            // Press Remove
         }
 
     }
@@ -76,7 +70,7 @@ function BooksItem(props){
         <Bookimage>
                     <img
                         src={props.item.volumeInfo.imageLinks.smallThumbnail}
-                        alt="book cover"
+                        alt="book cover" className='bookimage'
                     />
         </Bookimage>
         <Bookitemcontent key={props.item.id}>

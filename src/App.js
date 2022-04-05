@@ -87,6 +87,7 @@ const ReverseforDesktop =  styledComponents.div`
 `;
 
 const Featured = styledComponents.div`
+  font-size: 1.5rem;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -94,6 +95,7 @@ const Featured = styledComponents.div`
 `;
 
 const Featureditem = styledComponents.div`
+  font-size: 1rem;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -204,7 +206,7 @@ function App() {
         
       <Items>
         <ReverseforDesktop>
-        <Featured>Featured
+        <Featured className='featuredhead'>Featured
           <Featureditem onClick={()=>checkSelect(1) } className = {fselected1 ? 'featureditemgray' : 'featureditemwhite'}>
             <Featurecontent>
               <h4>{!fetching && FeaturedBook1.volumeInfo.title}</h4>
