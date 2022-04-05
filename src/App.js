@@ -18,15 +18,17 @@ const Logo = styledComponents.div`
 `;
 
 const StoreName = styledComponents.div`
+  text-align: center;
   font-size: 2rem;
-  @media only screen and (max-width: 600px){
+  font-weight: bold;
+    @media only screen and (max-width: 600px){
     font-size: 1.5rem;
   }
 `;
 
 const Socialmediaheader = styledComponents.div`
   width: 25%;
-  height: 50%;
+  margin-right: 0;
   @media only screen and (max-width: 420px){
     display: none;
   }
@@ -61,8 +63,14 @@ const Menubutton = styledComponents.div`
 const MobileMenu = styledComponents.div`
   display: none;
   @media only screen and (max-width: 600px){
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
     display: block;
-    background: url(./imgs/icons8-xbox-menu-100.png);
+    background-image: url("./imgs/icons8-xbox-menu-100.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     width: 100px;
     height: 100px;
   }
@@ -88,7 +96,9 @@ const ReverseforDesktop =  styledComponents.div`
 
 const Featured = styledComponents.div`
   font-size: 1.5rem;
+  text-align: center;
   display: flex;
+  background-color: #FFFBF0;
   flex-direction: column;
   width: 100%;
   border: 1px solid black;
@@ -105,6 +115,8 @@ const Featureditem = styledComponents.div`
 
 `;
 const Featuredimage = styledComponents.div`
+  margin-left: auto;
+  margin-right: auto;
   flex-wrap: wrap;
   width: 70%;
 `;

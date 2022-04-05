@@ -20,6 +20,8 @@ const Bookitem = styledComponents.div`
 
 
 const Bookimage = styledComponents.div`
+    margin-top: auto;
+    margin-bottom: auto;
     width: 40%;
     @media only screen and (max-width: 900px){
         width: 25%;
