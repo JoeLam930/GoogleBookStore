@@ -37,7 +37,7 @@ function BooksItem(props){
 
     const [selected, setSelected] = useState(false);
     
-
+    /*Reloading the page remember the state of the selected books.*/
     useEffect(() => {
         setSelected(JSON.parse(window.localStorage.getItem(props.item.id+'_selected')));
     }, []);
@@ -46,9 +46,10 @@ function BooksItem(props){
         window.localStorage.setItem(props.item.id+'_selected', selected);
     }, [selected]);
 
+    /*The book description should be a maximum of 140 characters.*/
     const truncate = ( str, n, useWordBoundary ) => {
         if (str.length <= n) { return str; }
-        const subString = str.substr(0, n-1); // the original check
+        const subString = str.substr(0, n-1);
         return (useWordBoundary 
           ? subString.substr(0, subString.lastIndexOf(" ")) 
           : subString);
@@ -65,7 +66,11 @@ function BooksItem(props){
     }
 
     return (
-    
+    /*Select on a book anywhere on the page by clicking on them.
+      it should be clear the user has made a selection, add
+      a class of is-selected.
+      Click on a selected book a second time to remove the class.
+    */
 
     <Bookitem onClick={()=>checkSelect() } className = {selected ? 'bookItemgray' : 'bookItemwhite'}> 
 
@@ -75,6 +80,8 @@ function BooksItem(props){
                         alt="book cover" className='bookimage'
                     />
         </Bookimage>
+        {/*Each book in the list displays the book cover, title, subtitle, all
+           authors, number of pages and description.*/}
         <Bookitemcontent key={props.item.id}>
             <h4>{props.item.volumeInfo.title}
             {props.item.volumeInfo.subtitle == null ? "" : <h5>{props.item.volumeInfo.subtitle}</h5>}</h4>

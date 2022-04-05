@@ -70,10 +70,6 @@ const MobileMenu = styledComponents.div`
     margin-right: auto;
     border: 1px solid black;
     display: block;
-    background-image: url("./imgs/icons8-xbox-menu-100.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
     width: 100px;
     height: 100px;
   }
@@ -138,14 +134,6 @@ const NoFeatured = styledComponents.div`
 
 function App() {
 
-  const truncate = ( str, n, useWordBoundary ) => {
-    if (str.length <= n) { return str; }
-    const subString = str.substr(0, n-1);
-    return (useWordBoundary 
-      ? subString.substr(0, subString.lastIndexOf(" ")) 
-      : subString);
-  };
-
   const [ BooksStorage, setBooksStorage ] = useState([]);
   const [ FeaturedBook1, setFeaturedBook1 ] = useState();
   const [ FeaturedBook2, setFeaturedBook2 ] = useState();
@@ -153,6 +141,7 @@ function App() {
   const [fselected2, setfSelected2] = useState(false);  
   const [fetching, setFetching ] = useState(true);     
 
+  /*Reloading the page remember the state of the selected books.*/
   useEffect(() => {
      setfSelected1(JSON.parse(window.localStorage.getItem('fselected1')));
      setfSelected2(JSON.parse(window.localStorage.getItem('fselected2')));
@@ -162,6 +151,15 @@ function App() {
       window.localStorage.setItem('fselected1', fselected1);
       window.localStorage.setItem('fselected2', fselected2);
   }, [fselected1, fselected2]); 
+
+  /*The book description should be a maximum of 140 characters.*/
+  const truncate = ( str, n, useWordBoundary ) => {
+    if (str.length <= n) { return str; }
+    const subString = str.substr(0, n-1);
+    return (useWordBoundary 
+      ? subString.substr(0, subString.lastIndexOf(" ")) 
+      : subString);
+  };
 
   const checkSelect = (num) => {
     if(num === 1){
@@ -213,6 +211,10 @@ function App() {
         
       <Items>
         <ReverseforDesktop>
+        {/*Display those in the 'Featured' books column only.
+          Select on a book anywhere on the page by clicking on them.
+          Clear the user has made a selection, add a class of is-selected.
+          Click on a selected book a second time to remove the class.*/}
         <Featured className='featuredhead'>Featured
           <Featureditem onClick={()=>checkSelect(1) } className = {fselected1 ? 'featureditemgray' : 'featureditemwhite'}>
             <Featurecontent>
@@ -245,6 +247,8 @@ function App() {
       <NoFeatured>
       <BrowserRouter>
         <Routes>
+          {/*Each book in the list displays the book cover, title, subtitle, all
+          authors, number of pages and description.*/}
           <Route path='/' element={<AllBooksPage BooksStorage = {BooksStorage}
                                                 setBooksStorage={setBooksStorage}
                                                 FeaturedBook1 = {FeaturedBook1}
