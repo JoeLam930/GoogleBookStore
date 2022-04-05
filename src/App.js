@@ -1,4 +1,4 @@
-import { BrowserRouter, Link, Route, Routes, Router, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AllBooksPage from './pages/AllBooksPage.js';
 import { useState, useEffect } from 'react';
 import styledComponents from 'styled-components';
@@ -23,6 +23,7 @@ const StoreName = styledComponents.div`
   font-weight: bold;
     @media only screen and (max-width: 600px){
     font-size: 1.5rem;
+    text-align: center;
   }
 `;
 
@@ -36,10 +37,12 @@ const Socialmediaheader = styledComponents.div`
 
 const Socialmediafooter = styledComponents.div`
   width: 100%;
-  height: 50%;
   visibility: hidden;
   @media only screen and (max-width: 420px){
     visibility: visible;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;  
   }
 `;
 
@@ -135,9 +138,9 @@ const NoFeatured = styledComponents.div`
 
 function App() {
 
-  const truncate2 = ( str, n, useWordBoundary ) => {
+  const truncate = ( str, n, useWordBoundary ) => {
     if (str.length <= n) { return str; }
-    const subString = str.substr(0, n-1); // the original check
+    const subString = str.substr(0, n-1);
     return (useWordBoundary 
       ? subString.substr(0, subString.lastIndexOf(" ")) 
       : subString);
@@ -159,14 +162,6 @@ function App() {
       window.localStorage.setItem('fselected1', fselected1);
       window.localStorage.setItem('fselected2', fselected2);
   }, [fselected1, fselected2]); 
-
-  // useEffect(() => {
-     
-  // }, []);
-
-  // useEffect(() => {
-      
-  // }, [fselected2]);
 
   const checkSelect = (num) => {
     if(num === 1){
@@ -225,7 +220,7 @@ function App() {
               {!fetching && (FeaturedBook1.volumeInfo.subtitle == null ? "" : <h4>{FeaturedBook1.volumeInfo.subtitle}</h4>)}
               <p>{!fetching && FeaturedBook1.volumeInfo.authors.join(" | ")}</p>
               <p>Pages: {!fetching && FeaturedBook1.volumeInfo.pageCount}</p>
-              <p>{!fetching && truncate2(FeaturedBook1.volumeInfo.description, 140, true)}</p>             
+              <p>{!fetching && truncate(FeaturedBook1.volumeInfo.description, 140, true)}</p>             
             </Featurecontent>
             <Featuredimage>
               {!fetching && <img src={FeaturedBook1.volumeInfo.imageLinks.smallThumbnail} alt="book cover"/>}
@@ -239,7 +234,7 @@ function App() {
               {!fetching && (FeaturedBook2.volumeInfo.subtitle == null ? "" : <h4>{FeaturedBook2.volumeInfo.subtitle}</h4>)}
               <p>{!fetching && FeaturedBook2.volumeInfo.authors.join(" | ")}</p>
               <p>Pages: {!fetching && FeaturedBook2.volumeInfo.pageCount}</p>
-              <p>{!fetching && truncate2(FeaturedBook2.volumeInfo.description, 140, true)}</p>             
+              <p>{!fetching && truncate(FeaturedBook2.volumeInfo.description, 140, true)}</p>             
             </Featurecontent>
             <Featuredimage>
               {!fetching && <img src={FeaturedBook2.volumeInfo.imageLinks.smallThumbnail} alt="book cover"/>}

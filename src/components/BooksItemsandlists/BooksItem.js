@@ -46,7 +46,7 @@ function BooksItem(props){
         window.localStorage.setItem(props.item.id+'_selected', selected);
     }, [selected]);
 
-    const truncate2 = ( str, n, useWordBoundary ) => {
+    const truncate = ( str, n, useWordBoundary ) => {
         if (str.length <= n) { return str; }
         const subString = str.substr(0, n-1); // the original check
         return (useWordBoundary 
@@ -80,7 +80,7 @@ function BooksItem(props){
             {props.item.volumeInfo.subtitle == null ? "" : <h5>{props.item.volumeInfo.subtitle}</h5>}</h4>
             <p>{props.item.volumeInfo.authors.join(" | ")}</p>
             <p>Pages: {props.item.volumeInfo.pageCount}</p>
-            <p>{truncate2(props.item.volumeInfo.description, 140, true)}</p>             
+            <p>{truncate(props.item.volumeInfo.description, 140, true)}</p>             
         </Bookitemcontent>
     </Bookitem>
     
