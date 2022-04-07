@@ -1,14 +1,28 @@
 import BooksList from '../components/BooksItemsandlists/BooksList';
+import axios from 'axios';
       
 function AllBooksPage(props) {
 
-  props.fetching && fetch("https://www.googleapis.com/books/v1/volumes?q=HTML5")
+  const api = axios.create({
+    baseURL: 'https://www.googleapis.com/books/v1/volumes?q=HTML5'
+  })
+
+  props.fetching && api.get('/')
+  //.then(response => response.json())
+  .then(res =>{
+    props.setBooksStorage(res.data.items);
+  })
+  .finally(() => {
+    props.setFetching(false);    
+  });
+
+  /*  props.fetching && fetch("https://www.googleapis.com/books/v1/volumes?q=HTML5")
   .then(response => response.json())
   .then(data =>{
       props.setBooksStorage(data.items);
   }).finally(() => {
     props.setFetching(false);
-  })
+  })*/
         
   return (
     <section>
